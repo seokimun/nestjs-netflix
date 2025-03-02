@@ -1,13 +1,27 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+    Column,
+    Entity,
+    JoinColumn,
+    OneToOne,
+    PrimaryGeneratedColumn,
+} from 'typeorm';
+import { BaseEntity } from './base.entity';
+import { MovieDetail } from './movie-detail.entity';
 
 @Entity()
-export class Movie {
-  @PrimaryGeneratedColumn()
-  id: number;
+export class Movie extends BaseEntity {
+    @PrimaryGeneratedColumn()
+    id: number;
 
-  @Column()
-  title: string;
+    @Column()
+    title: string;
 
-  @Column()
-  genre: string;
+    @Column()
+    genre: string;
+
+    @OneToOne(() => MovieDetail, (movieDetail) => movieDetail.movie, {
+        cascade: true,
+    })
+    @JoinColumn()
+    detail: MovieDetail;
 }
