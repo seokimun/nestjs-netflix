@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { MovieModule } from './movie/movie.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { DirectorModule } from './director/director.module';
 import * as Joi from 'joi';
 
 @Module({
@@ -34,6 +35,7 @@ import * as Joi from 'joi';
             inject: [ConfigService],
         }),
         MovieModule,
+        DirectorModule,
     ],
     controllers: [AppController],
     providers: [AppService],
